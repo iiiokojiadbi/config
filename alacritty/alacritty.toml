@@ -1,0 +1,22 @@
+[env]
+TERM = "xterm-256color"
+
+[window]
+padding.x = 5
+padding.y = 10
+opacity = 0.95
+blur = true
+dynamic_padding = true
+decorations = "Buttonless"
+# decorations = "Transparent"
+# startup_mode = "SimpleFullscreen"
+startup_mode = "Maximized"
+
+[keyboard]
+bindings = [
+  { key = "W", mods = "Command", action = "None" }
+]
+
+[font]
+normal.family = "JetBrainsMono Nerd Font"
+size = 12.0
