@@ -1,3 +1,9 @@
+-- Leader
+vim.g.mapleader = " "
+
+-- Отключение мышки
+vim.o.mouse = ""
+
 -- Относительные строки
 vim.wo.number = true
 vim.wo.relativenumber = true
