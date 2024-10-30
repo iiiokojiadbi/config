@@ -35,3 +35,8 @@ map("n", "<Tab>", ":BufferLineCycleNext<CR>", merge_opts({ desc = "Следую�
 map("n", "<s-Tab>", ":BufferLineCyclePrev<CR>", merge_opts({ desc = "Предыдущий таб" }))
 map("n", "<leader>x", ":BufferLinePickClose<CR>", merge_opts({ desc = "Закрыть таб" }))
 map("n", "<c-x>", ":BufferLineCloseOthers<CR>", merge_opts({ desc = "Закрыть остальные табы" }))
+map("n", "<leader>s", function()
+	local toggle = require("snipe").create_buffer_menu_toggler({ max_path_width = 3 })
+	toggle()
+end, merge_opts({ desc = "Показать буферы" }))
+map("n", "<leader><space>", "<cmd>e #<cr>", merge_opts({ desc = "Альтернативный буфер" }))
