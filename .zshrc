@@ -46,3 +46,4 @@ function kitty-nvim() {
 	kitty --start-as=fullscreen --session ~/.config/kitty/startup_nvim.conf
 }
 
+export PATH="/opt/homebrew/opt/node@20/bin:$PATH"
