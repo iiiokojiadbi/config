@@ -10,7 +10,7 @@ config.font_size = 14
 
 config.enable_tab_bar = false
 config.color_scheme = "GruvboxDark"
-config.window_background_opacity = 0.9
+config.window_background_opacity = 0.95
 config.macos_window_background_blur = 20
 
 config.window_padding = {
@@ -34,29 +34,29 @@ config.keys = {
 	},
 	{
 		key = "_",
-    mods = "SHIFT|CTRL|ALT",
-    action = wezterm.action.InputSelector {
-      title = 'Выберите тип окна:',
-      choices = {
-        {
-          id = 'splitHorizontal',
-          label = 'горизонтальное окно'
-        },
-        {
-          id = 'splitVertical',
-          label = 'вертикальное окно'
-        },
-      },
-      action = wezterm.action_callback(function(window, pane, id, label)
-        if not id then
-          wezterm.log_info 'Nothing selected'
-        elseif id == 'splitHorizontal' then
-          window:perform_action(wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' }, pane)
-        else
-          
-        end
-      end),
-  },},
+		mods = "SHIFT|CTRL|ALT",
+		action = wezterm.action.InputSelector({
+			title = "Выберите тип окна:",
+			choices = {
+				{
+					id = "splitHorizontal",
+					label = "горизонтальное окно",
+				},
+				{
+					id = "splitVertical",
+					label = "вертикальное окно",
+				},
+			},
+			action = wezterm.action_callback(function(window, pane, id, label)
+				if not id then
+					wezterm.log_info("Nothing selected")
+				elseif id == "splitHorizontal" then
+					window:perform_action(wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }), pane)
+				else
+				end
+			end),
+		}),
+	},
 }
 
 -- and finally, return the configuration to wezterm
