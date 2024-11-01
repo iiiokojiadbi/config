@@ -13,3 +13,15 @@ vim.o.mouse = ""
 
 -- Относительные строки
 vim.wo.relativenumber = true
+
+-- Стилизация редактора
+vim.opt.fillchars = {
+  vert = "│",
+  fold = "⠀",
+  eob = " ", -- suppress ~ at EndOfBuffer
+  diff = "⣿", -- alternatives = ⣿ ░ ─ ╱
+  msgsep = "‾",
+  foldopen = "▾",
+  foldsep = "│",
+  foldclose = "▸",
+}
