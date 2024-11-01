@@ -58,7 +58,11 @@ end, { desc = "buffer предыдущий" })
 -- whichkey
 map("n", "<leader>wK", "<cmd>WhichKey <CR>", { desc = "whichkey все привязки" })
 
--- !!! РАЗОБРАТЬ
+-- Snipe
+map("n", "<leader>s", function()
+  require("snipe").open_buffer_menu { max_path_width = 3 }
+end, { desc = "snipe показать буферы" })
+
 -- telescope
 map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "telescope поиск по слову" })
 map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "telescope поиск по буферам" })
@@ -125,3 +129,9 @@ end, { desc = "terminal переключить горизонтальный" })
 map({ "n", "t" }, "<A-i>", function()
   require("nvchad.term").toggle { pos = "float", id = "floatTerm" }
 end, { desc = "terminal переключить плавающий" })
+
+-- Tmux-navigator
+map("n", "<c-l>", "<cmd>:TmuxNavigateRight<cr>", { desc = "switch tmux вправо" })
+map("n", "<c-h>", "<cmd>:TmuxNavigateLeft<cr>", { desc = "switch tmux влево" })
+map("n", "<c-k>", "<cmd>:TmuxNavigateUp<cr>", { desc = "switch tmux вверх" })
+map("n", "<c-j>", "<cmd>:TmuxNavigateDown<cr>", { desc = "switch tmux вниз" })

@@ -7,7 +7,6 @@ return {
         dictionary = "asfghl;wertyuiop",
       },
       navigate = {
-        cancel_snipe = "q",
         close_buffer = "d",
       },
       sort = "default",
