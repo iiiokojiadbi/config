@@ -6,6 +6,7 @@ return {
       "css",
       "lua",
       "typescript",
+      "rust",
       "javascript",
       "vim",
       "vimdoc",

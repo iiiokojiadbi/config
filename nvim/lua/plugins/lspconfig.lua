@@ -1,6 +1,10 @@
 return {
-    "neovim/nvim-lspconfig",
-    config = function()
-      require "configs.lspconfig"
-    end,
+  "neovim/nvim-lspconfig",
+  dependencies = {
+    "b0o/schemastore.nvim",
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+  },
+  config = function()
+    require "configs.lspconfig"
+  end,
 }

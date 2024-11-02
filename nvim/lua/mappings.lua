@@ -12,6 +12,7 @@ map("n", "<Esc>", "<cmd>noh<CR>", { desc = "general выключить подс�
 map("n", "<C-s>", "<cmd>w<CR>", { desc = "general сохранить файл" })
 map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "general копировать весь файл" })
 map("n", "<leader>ch", "<cmd>NvCheatsheet<CR>", { desc = "toggle nvcheatsheet" })
+map("n", "x", '"_x', { desc = "general удалить символ" })
 
 -- Перемещение курсора в INSERT режиме
 map("i", "<C-b>", "<ESC>^i", { desc = "move в начало строки" })
