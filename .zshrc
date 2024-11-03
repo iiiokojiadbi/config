@@ -32,6 +32,7 @@ export PROJECT_NV="~/.config/nv"
 
 alias ls="eza --tree --level=1 --icons=always --no-time --no-user --no-permissions"
 alias nv="NVIM_APPNAME=nv nvim"
+alias nd="NVIM_APPNAME=nd nvim"
 
 function yy() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
