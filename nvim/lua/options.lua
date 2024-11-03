@@ -25,3 +25,7 @@ vim.opt.fillchars = {
   foldsep = "│",
   foldclose = "▸",
 }
+
+vim.opt.wrap = false
+vim.opt.linebreak = true
+vim.opt.autoindent = true
