@@ -23,6 +23,7 @@ require("lazy").setup {
   require "plugins.autocompletion",
   require "plugins.conform",
   require "plugins.gitsigns",
+  require "plugins.lint",
   require "plugins.lsp",
   require "plugins.general",
 
