@@ -1,4 +1,3 @@
-require "nvchad.options"
 
 -- add yours here!
 
@@ -7,6 +6,10 @@ require "nvchad.options"
 
 -- Leader
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
+-- Общая вставка
+vim.opt.clipboard = "unnamedplus"
 
 -- Отключение мышки
 vim.o.mouse = ""

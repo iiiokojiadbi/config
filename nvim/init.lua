@@ -1,5 +1,5 @@
-vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46/"
-vim.g.mapleader = " "
+require "core.options"
+require "core.mappings"
 
 -- bootstrap lazy and all plugins
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
@@ -11,27 +11,51 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-local lazy_config = require "configs.lazy"
+require("lazy").setup {
+  require "plugins.tmux-navigator",
+  require "plugins.neotree",
+  require "plugins.nord",
+  require "plugins.bufferline",
+  require "plugins.scrollbar",
+  require "plugins.lualine",
+  require "plugins.treesitter",
+  require "plugins.telescope",
+  require "plugins.autocompletion",
+  require "plugins.conform",
+  require "plugins.gitsigns",
+  require "plugins.general",
 
--- load plugins
-require("lazy").setup({
-  {
-    "NvChad/NvChad",
-    lazy = false,
-    branch = "v2.5",
-    import = "nvchad.plugins",
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        "2html_plugin",
+        "tohtml",
+        "getscript",
+        "getscriptPlugin",
+        "gzip",
+        "logipat",
+        "netrw",
+        "netrwPlugin",
+        "netrwSettings",
+        "netrwFileHandlers",
+        "matchit",
+        "tar",
+        "tarPlugin",
+        "rrhelper",
+        "spellfile_plugin",
+        "vimball",
+        "vimballPlugin",
+        "zip",
+        "zipPlugin",
+        "tutor",
+        "rplugin",
+        "syntax",
+        "synmenu",
+        "optwin",
+        "compiler",
+        "bugreport",
+        "ftplugin",
+      },
+    },
   },
-
-  { import = "plugins" },
-}, lazy_config)
-
--- load theme
-dofile(vim.g.base46_cache .. "defaults")
-dofile(vim.g.base46_cache .. "statusline")
-
-require "options"
-require "nvchad.autocmds"
-
-vim.schedule(function()
-  require "mappings"
-end)
+}
