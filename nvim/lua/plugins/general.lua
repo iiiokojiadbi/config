@@ -31,4 +31,8 @@ return {
     "folke/ts-comments.nvim",
     event = "VeryLazy",
   },
+  {
+    "j-hui/fidget.nvim",
+    opts = {},
+  },
 }

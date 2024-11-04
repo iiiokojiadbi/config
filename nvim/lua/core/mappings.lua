@@ -22,8 +22,8 @@ map("t", "<C-x>", "<C-\\><C-N>", { desc = "terminal потерять фокус"
 -- Изменение размеров окна
 map("n", "<Up>", ":resize -2<CR>", { desc = "general уменьшить размер буфера" })
 map("n", "<Down>", ":resize +2<CR>", { desc = "general увеличить размер буфера" })
-map("n", "<Left>", ":vertical resize -2<CR>", { desc = "general уменьшить размер вертикального буфера" })
-map("n", "<Right>", ":vertical resize +2<CR>", { desc = "general увеличить размер вертикального буфера" })
+map("n", "<Left>", ":vertical resize +2<CR>", { desc = "general увеличить размер вертикального буфера" })
+map("n", "<Right>", ":vertical resize -2<CR>", { desc = "general уменьшить размер вертикального буфера" })
 
 -- Vertical scroll and center
 map("n", "<C-d>", "<C-d>zz")
@@ -46,7 +46,6 @@ map("n", "<C-h>", "<C-w>h", { desc = "switch окно слева" })
 map("n", "<C-l>", "<C-w>l", { desc = "switch окно справа" })
 map("n", "<C-j>", "<C-w>j", { desc = "switch окно снизу" })
 map("n", "<C-k>", "<C-w>k", { desc = "switch окно сверху" })
-
 
 -- Comment
 map("n", "<leader>/", "gcc", { desc = "toggle комментарий", remap = true })
