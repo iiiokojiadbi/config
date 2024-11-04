@@ -13,6 +13,6 @@ return {
       close_if_last_window = false,
     }
 
-vim.keymap.set("n", "<leader>e", ":Neotree left toggle reveal<CR>", { desc = "Открыть дерево файлов" })
+    vim.keymap.set("n", "<leader>e", ":Neotree left toggle reveal<CR>", { desc = "Открыть дерево файлов" })
   end,
 }

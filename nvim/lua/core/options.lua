@@ -1,4 +1,3 @@
-
 -- add yours here!
 
 -- local o = vim.o
