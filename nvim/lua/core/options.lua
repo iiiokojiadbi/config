@@ -49,3 +49,4 @@ vim.opt.breakindent = true
 vim.opt.wrap = false
 vim.opt.linebreak = true
 vim.opt.autoindent = true
+vim.opt.swapfile = false

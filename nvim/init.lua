@@ -13,8 +13,9 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup {
   require "plugins.tmux-navigator",
-  require "plugins.neotree",
+  -- require "plugins.neotree",
   require "plugins.nord",
+  require "plugins.oil",
   require "plugins.bufferline",
   require "plugins.scrollbar",
   require "plugins.lualine",
