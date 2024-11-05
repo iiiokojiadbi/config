@@ -26,6 +26,6 @@ return {
 
     vim.keymap.set("n", "<leader>fc", function()
       require("conform").format { lsp_fallback = true }
-    end, { desc = "форматировать файл" })
+    end, { desc = "conform форматировать файл" })
   end,
 }
