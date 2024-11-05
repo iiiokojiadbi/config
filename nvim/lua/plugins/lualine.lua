@@ -36,8 +36,7 @@ return {
       options = {
         icons_enabled = true,
         globalstatus = true,
-        -- theme = "catppuccin", -- Set theme based on environment variable
-        -- Some useful glyphs:
+        theme = "catppuccin", -- Some useful glyphs:
         -- https://www.nerdfonts.com/cheat-sheet
         --        
         section_separators = { left = "", right = "" },

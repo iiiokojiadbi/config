@@ -7,6 +7,14 @@ return {
     tag = "0.1.5",
     config = function()
       require("telescope").setup {
+        defaults = {
+          mappings = {
+            n = {
+              ["d"] = require("telescope.actions").delete_buffer,
+              ["q"] = require("telescope.actions").close,
+            },
+          },
+        },
         pickers = {
           find_files = {
             hidden = true,
