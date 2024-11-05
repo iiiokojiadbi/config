@@ -11,11 +11,13 @@ return {
       return vim.fn.winwidth(0) > 100
     end
 
+    local icons = require "icons"
+
     local diagnostics = {
       "diagnostics",
       sources = { "nvim_diagnostic" },
       sections = { "error", "warn" },
-      symbols = { error = " ", warn = " ", info = " ", hint = " " },
+      symbols = { error = icons.Error, warn = icons.Warn, info = icons.Info, hint = icons.Hint },
       colored = false,
       update_in_insert = false,
       always_visible = false,

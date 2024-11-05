@@ -2,6 +2,12 @@ vim.cmd "set expandtab"
 vim.cmd "set tabstop=2"
 vim.cmd "set softtabstop=2"
 vim.cmd "set shiftwidth=2"
+
+for type, icon in pairs(require "icons") do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
 vim.g.mapleader = " "
 
 vim.opt.swapfile = false
