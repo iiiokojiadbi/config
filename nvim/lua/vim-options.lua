@@ -13,14 +13,13 @@ vim.g.mapleader = " "
 vim.opt.swapfile = false
 vim.opt.clipboard = "unnamedplus"
 
-vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>")
 vim.wo.number = true
 vim.wo.relativenumber = true
 --
 -- Общие
 vim.keymap.set("n", ";", ":", { desc = "general войти в COMMAND" })
 vim.keymap.set("i", "jj", "<ESC>", { desc = "general выйти в NORMAL" })
-vim.keymap.set("n", "<Esc>", "<cmd>noh<CR>", { desc = "general выключить подсветку поиска" })
+vim.keymap.set("n", "<C-h>", ":nohlsearch<CR>", { desc = "general выключить подсветку поиска" })
 vim.keymap.set("n", "<C-s>", "<cmd>w<CR>", { desc = "general сохранить файл" })
 vim.keymap.set("n", "<C-c>", "<cmd>%y+<CR>", { desc = "general копировать весь файл" })
 vim.keymap.set("n", "x", '"_x', { desc = "general удалить символ" })
