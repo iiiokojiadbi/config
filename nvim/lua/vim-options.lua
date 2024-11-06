@@ -11,13 +11,16 @@ vim.opt.clipboard = "unnamedplus"
 vim.wo.number = true
 vim.wo.relativenumber = true
 
+vim.opt.spelllang = "en_us,ru_ru"
+vim.opt.spell = true
+
 -- Отступы
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.expandtab = true
 
--- Общи-- Скролл
+-- Скролл
 vim.opt.scrolloff = 25
 vim.opt.wrap = false
 vim.opt.termguicolors = true
