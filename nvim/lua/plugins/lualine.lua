@@ -11,11 +11,13 @@ return {
       return vim.fn.winwidth(0) > 100
     end
 
+    local icons = require "icons"
+
     local diagnostics = {
       "diagnostics",
       sources = { "nvim_diagnostic" },
       sections = { "error", "warn" },
-      symbols = { error = " ", warn = " ", info = " ", hint = " " },
+      symbols = { error = icons.Error, warn = icons.Warn, info = icons.Info, hint = icons.Hint },
       colored = false,
       update_in_insert = false,
       always_visible = false,
@@ -26,14 +28,15 @@ return {
       "diff",
       colored = false,
       symbols = { added = " ", modified = " ", removed = " " }, -- changes diff symbols
+
       cond = hide_in_width,
     }
 
     require("lualine").setup {
       options = {
         icons_enabled = true,
-        theme = "nord", -- Set theme based on environment variable
-        -- Some useful glyphs:
+        globalstatus = true,
+        theme = "catppuccin", -- Some useful glyphs:
         -- https://www.nerdfonts.com/cheat-sheet
         --        
         section_separators = { left = "", right = "" },
