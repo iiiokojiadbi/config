@@ -1,8 +1,3 @@
-vim.cmd "set expandtab"
-vim.cmd "set tabstop=2"
-vim.cmd "set softtabstop=2"
-vim.cmd "set shiftwidth=2"
-
 for type, icon in pairs(require "icons") do
   local hl = "DiagnosticSign" .. type
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
@@ -15,8 +10,18 @@ vim.opt.clipboard = "unnamedplus"
 
 vim.wo.number = true
 vim.wo.relativenumber = true
---
--- Общие
+
+-- Отступы
+vim.opt.shiftwidth = 2
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.expandtab = true
+
+-- Общи-- Скролл
+vim.opt.scrolloff = 25
+vim.opt.wrap = false
+vim.opt.termguicolors = true
+
 vim.keymap.set("n", ";", ":", { desc = "general войти в COMMAND" })
 vim.keymap.set("i", "jj", "<ESC>", { desc = "general выйти в NORMAL" })
 vim.keymap.set("n", "<C-h>", ":nohlsearch<CR>", { desc = "general выключить подсветку поиска" })
