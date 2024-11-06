@@ -32,7 +32,13 @@ return {
   {
     "j-hui/fidget.nvim",
     lazy = false,
-    opts = {},
+    opts = {
+      notification = {
+        window = {
+          winblend = 0,
+        },
+      },
+    },
   },
   {
     "kevinhwang91/nvim-bqf",
