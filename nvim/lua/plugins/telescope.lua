@@ -52,6 +52,7 @@ return {
           hidden = true,
         }
       end, { desc = "telescope поиск по всем файлам" })
+
       require("telescope").load_extension "ui-select"
     end,
   },
