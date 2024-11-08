@@ -1,9 +1,11 @@
 return {
   {
     "nvim-telescope/telescope-ui-select.nvim",
+    event = "VeryLazy",
   },
   {
     "nvim-telescope/telescope.nvim",
+    lazy = false,
     tag = "0.1.5",
     config = function()
       require("telescope").setup {

@@ -14,21 +14,14 @@ return {
       transparent_background = true,
       default_integrations = true,
       integrations = {
-        alpha = true,
         cmp = true,
-        dap = true,
-        dap_ui = true,
-        dashboard = true,
+        blink_cmp = true,
         diffview = true,
-        flash = true,
         fidget = true,
         gitsigns = true,
         markdown = true,
         mason = true,
-        neogit = true,
-        neotree = true,
         nvimtree = true,
-        ufo = true,
         rainbow_delimiters = true,
         render_markdown = true,
         lsp_trouble = true,
@@ -36,16 +29,6 @@ return {
         telescope = { enabled = true },
         treesitter = not is_vim,
         treesitter_context = true,
-        barbecue = {
-          dim_dirname = true,
-          bold_basename = true,
-          dim_context = false,
-          alt_background = false,
-        },
-        illuminate = {
-          enabled = true,
-          lsp = false,
-        },
         indent_blankline = {
           enabled = true,
           scope_color = "",
@@ -71,17 +54,9 @@ return {
             background = true,
           },
         },
-        navic = {
-          enabled = false,
-          custom_bg = "NONE",
-        },
         dropbar = {
           enabled = true,
-          color_mode = false,
-        },
-        colorful_winsep = {
-          enabled = false,
-          color = "red",
+          color_mode = true,
         },
         mini = {
           enabled = true,

@@ -33,14 +33,13 @@ return {
     },
     lazy = false,
     config = function()
-      local _border = "single"
-
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
-      local lspconfig = require "lspconfig"
-
       require("lspconfig.ui.windows").default_options = {
-        border = _border,
+        border = "single",
       }
+
+      -- local capabilities = vim.lsp.protocol.make_client_capabilities()
+      local capabilities = require("blink.cmp").get_lsp_capabilities()
+      local lspconfig = require "lspconfig"
 
       local servers = {
         "rust_analyzer",
@@ -67,15 +66,15 @@ return {
       end
 
       vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-        border = _border,
+        border = "single",
       })
 
       vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-        border = _border,
+        border = "single",
       })
 
       vim.diagnostic.config {
-        float = { border = _border },
+        float = { border = "single" },
       }
 
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})

@@ -1,6 +1,7 @@
 return {
   {
     "tpope/vim-fugitive",
+    lazy = false,
     config = function()
       vim.keymap.set("n", "<leader>lf", ":Flog<CR>", { desc = "Git Log" })
     end,
