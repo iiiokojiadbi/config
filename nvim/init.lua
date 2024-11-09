@@ -12,4 +12,43 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require "vim-options"
-require("lazy").setup "plugins"
+require("lazy").setup({ { import = "plugins" } }, {
+  change_detection = { enabled = false },
+  concurrency = 4,
+  defaults = {
+    lazy = true,
+  },
+  install = {
+    colorscheme = { "catppuccin" },
+  },
+  performance = {
+    cache = {
+      enabled = true,
+    },
+    reset_packpath = true,
+    rtp = {
+      disabled_plugins = {
+        "osc52",
+        "parser",
+        "gzip",
+        "netrwPlugin",
+        "health",
+        "man",
+        "matchit",
+        "rplugin",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+        "shadafile",
+        "spellfile",
+        "editorconfig",
+      },
+    },
+  },
+  ui = {
+    border = "single",
+    title = "lazy.nvim",
+    size = { width = 0.9, height = 0.9 },
+  },
+})

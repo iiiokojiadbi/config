@@ -41,18 +41,10 @@ return {
     },
   },
   {
-    "kevinhwang91/nvim-bqf",
-    lazy = false,
-  },
-  {
     "windwp/nvim-ts-autotag",
     event = "VeryLazy",
     config = function()
       require("nvim-ts-autotag").setup()
     end,
-  },
-  {
-    "stevearc/dressing.nvim",
-    opts = {},
   },
 }

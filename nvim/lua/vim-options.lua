@@ -11,9 +11,6 @@ vim.opt.clipboard = "unnamedplus"
 vim.wo.number = true
 vim.wo.relativenumber = true
 
-vim.opt.spelllang = "en_us,ru_ru"
-vim.opt.spell = true
-
 -- Отступы
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
