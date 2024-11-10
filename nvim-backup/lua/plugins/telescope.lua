@@ -43,7 +43,8 @@ return {
       vim.keymap.set("n", "<leader>fgS", builtin.git_stash, { desc = "telescope git stash" })
       vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "telescope поиск по файлам" })
       vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "telescope поиск по документации и помощи" })
-      vim.keymap.set("n", "<leader>fz", builtin.current_buffer_fuzzy_find, { desc = "telescope поиск по текущему буферу" })
+      vim.keymap.set("n", "<leader>fz", builtin.current_buffer_fuzzy_find,
+        { desc = "telescope поиск по текущему буферу" })
 
       vim.keymap.set("n", "<leader>fa", function()
         builtin.find_files {
