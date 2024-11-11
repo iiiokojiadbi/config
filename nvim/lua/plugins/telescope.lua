@@ -1,16 +1,13 @@
-local telescope_config = require("configs.telescope")
+local telescope_config = require "configs.telescope"
 
 return {
   "nvim-telescope/telescope.nvim",
-  name = "telescope",
-  cmd = {
-    "Telescope"
-  },
+  cmd = { "Telescope" },
   dependencies = {
-    'nvim-lua/plenary.nvim',
+    "nvim-lua/plenary.nvim",
   },
   tag = "0.1.5",
   keys = telescope_config.keys,
   opts = telescope_config.opts,
-  config = telescope_config.config
+  config = telescope_config.config,
 }

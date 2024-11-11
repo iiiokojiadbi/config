@@ -1,12 +1,13 @@
 local M = {}
 
 function M.map(mode, keys, action, desc)
-    desc = desc or ""
+    desc = desc or " "
     local opts = { noremap = true, silent = true, desc = desc }
     vim.keymap.set(mode, keys, action, opts)
 end
 
 function M.telescope_lazy_action(command, action, desc)
+    desc = desc or " "
     return {
         "<leader>f" .. command,
         function()
