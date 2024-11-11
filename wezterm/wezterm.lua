@@ -13,6 +13,8 @@ config.color_scheme = "GruvboxDark"
 config.window_background_opacity = 0.90
 config.macos_window_background_blur = 15
 config.max_fps = 120
+config.window_decorations = "NONE"
+config.native_macos_fullscreen_mode = true
 
 config.window_padding = {
 	left = 0,
@@ -22,16 +24,26 @@ config.window_padding = {
 }
 
 -- Старт на весь экран
---wezterm.on("gui-startup", function(cmd)
---    local tab, pane, window = mux.spawn_window(cmd or {})
---    window:gui_window():maximize()
---end)
+wezterm.on("gui-startup", function(cmd)
+   local tab, pane, window = mux.spawn_window(cmd or {})
+   window:gui_window():maximize()
+end)
+-- wezterm.on('gui-attached', function(domain)
+--   -- maximize all displayed windows on startup
+--   local workspace = mux.get_active_workspace()
+--   for _, window in ipairs(mux.all_windows()) do
+--     if window:get_workspace() == workspace then
+--       window:gui_window():maximize()
+--     end
+--   end
+-- end)
 
 config.keys = {
 	{
 		key = "n",
 		mods = "SHIFT|CTRL",
 		action = wezterm.action.ToggleFullScreen,
+    -- action = wezterm.action.maximize
 	},
 	{
 		key = "_",
