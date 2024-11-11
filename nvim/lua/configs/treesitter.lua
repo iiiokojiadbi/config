@@ -1,6 +1,6 @@
 local M = {}
 
-local ensure_installed = {
+local languages = {
   "lua",
   "vimdoc",
   "rust",
@@ -11,9 +11,9 @@ local ensure_installed = {
   "javascript",
 }
 
-M.config = function(_, opts)
+M.config = function()
   require("nvim-treesitter.configs").setup {
-    ensure_installed,
+    ensure_installed = languages,
     auto_install = true,
     highlight = {
       enable = true,

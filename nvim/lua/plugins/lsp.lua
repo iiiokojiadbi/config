@@ -23,7 +23,7 @@ return {
     event = { "BufReadPost", "BufNewFile" },
     opts = {
       automatic_installation = true,
-      ensure_installed = { "lua_ls" },
+      ensure_installed = { "lua_ls", "ts_ls", "rust_analyzer" },
     },
   },
   {

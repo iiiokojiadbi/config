@@ -8,6 +8,5 @@ return {
   },
   tag = "0.1.5",
   keys = telescope_config.keys,
-  opts = telescope_config.opts,
   config = telescope_config.config,
 }

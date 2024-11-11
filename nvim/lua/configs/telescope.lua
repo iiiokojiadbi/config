@@ -8,25 +8,23 @@ M.keys = {
   map("w", "live_grep", "telescope поиск по слову"),
 }
 
-M.opts = {
-  defaults = {
-    mappings = {
-      n = {
-        ["d"] = "delete_buffer",
-        ["q"] = "close",
+M.config = function()
+  require("telescope").setup {
+    defaults = {
+      mappings = {
+        n = {
+          ["d"] = "delete_buffer",
+          ["q"] = "close",
+        },
       },
     },
-  },
-  pickers = {
-    find_files = {
-      hidden = true,
-      theme = "ivy",
+    pickers = {
+      find_files = {
+        hidden = true,
+        theme = "ivy",
+      },
     },
-  },
-}
-
-M.config = function(_, opts)
-  require("telescope").setup(opts)
+  }
 
   -- map({ "n" }, "<leader><leader>", builtin.oldfiles, "telescope поиск по недавно открытым")
   -- map({"n"}, "<leader>sk", builtin.keymaps,  "[S]earch [K]eymaps" )
