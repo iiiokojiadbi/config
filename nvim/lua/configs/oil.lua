@@ -22,7 +22,7 @@ M.config = function()
     },
     float = {
       padding = 2,
-      max_width = 90,
+      max_width = 150,
       max_height = 0,
     },
     win_options = {

@@ -18,10 +18,6 @@ M.mappings = function()
     callback = function(ev)
       vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
-      --- Set minipick as default picker
-      local minipick = require "mini.pick"
-      vim.ui.select = minipick.ui_select
-
       -- Diagnostics mappings
       map({ "n" }, "K", vim.lsp.buf.hover, "Open lsp hover")
       map({ "n" }, "<leader>gd", vim.lsp.buf.definition)

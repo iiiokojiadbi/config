@@ -7,7 +7,10 @@ M.keys = {
   map("b", "buffers", "telescope поиск по буферам"),
   map("w", "live_grep", "telescope поиск по слову"),
 }
-
+-- todo dad
+--FIX
+--TODO daw
+-- TODO test
 M.config = function()
   require("telescope").setup {
     defaults = {
