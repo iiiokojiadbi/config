@@ -6,12 +6,13 @@ function M.map(mode, keys, action, desc)
   vim.keymap.set(mode, keys, action, opts)
 end
 
-function M.telescope_lazy_action(command, action, desc)
+function M.telescope_lazy_action(command, action, desc, actions_opts)
+  actions_opts = actions_opts or {}
   desc = desc or " "
   return {
-    "<leader>f" .. command,
+    "<leader>" .. command,
     function()
-      require("telescope.builtin")[action]()
+      require("telescope.builtin")[action](actions_opts)
     end,
     desc,
   }
