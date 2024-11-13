@@ -4,11 +4,11 @@ local M = {}
 
 local servers = {
   "lua_ls",
-  -- "rust_analyzer",
-  -- "html",
-  -- "cssls",
+  "rust_analyzer",
+  "html",
+  "cssls",
   "ts_ls",
-  -- "jsonls",
+  "jsonls",
 }
 
 M.mappings = function()
@@ -30,18 +30,19 @@ end
 
 M.config = function()
   local lspconfig = require "lspconfig"
+  local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
   for _, lsp in ipairs(servers) do
     lspconfig[lsp].setup {
-      -- capabilities = capabilities,
+      capabilities = capabilities,
       settings = {
         Lua = {
           diagnostics = { globals = { "vim", "require" } },
         },
-        -- json = {
-        --   schemas = require("schemastore").json.schemas(),
-        --   validate = { enable = true },
-        -- },
+        json = {
+          schemas = require("schemastore").json.schemas(),
+          validate = { enable = true },
+        },
       },
     }
   end

@@ -28,11 +28,12 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
+    dependencies = {
+      "b0o/schemastore.nvim",
+    },
     cmd = { "LspInfo", "LspInstall", "LspUninstall" },
     event = { "BufReadPost", "BufNewFile" },
-    keys = function()
-      lsp_config.mappings()
-    end,
+    keys = lsp_config.mappings,
     config = lsp_config.config,
   },
 }
