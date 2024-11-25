@@ -4,7 +4,7 @@ local opts = {}
 
 opts.initial = function()
   g.mapleader = " "
-  g.maplocalleader = "\\"
+  -- g.maplocalleader = "\\"
 
   opt.laststatus = 3
   opt.clipboard = "unnamedplus"
@@ -45,10 +45,10 @@ opts.final = function()
   opt.sidescrolloff = 2
 
   --   -- Disable providers
-  --   g.loaded_node_provider = 0
-  g.loaded_python3_provider = 0
-  g.loaded_perl_provider = 0
-  g.loaded_ruby_provider = 0
+  -- g.loaded_node_provider = 0
+  -- g.loaded_python3_provider = 0
+  -- g.loaded_perl_provider = 0
+  -- g.loaded_ruby_provider = 0
 end
 
 --- Load shada after ui-enter
