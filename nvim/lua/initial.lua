@@ -18,5 +18,5 @@ require("lazy").setup({
 })
 
 require("options")
-require("modules").autocmds()
+require("autocmds")
 require("mappings")

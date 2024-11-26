@@ -1,32 +1,12 @@
 local km = vim.keymap
 
--- Here is a utility function that closes any floating windows when you press escape
-local function close_floating()
-  for _, win in pairs(vim.api.nvim_list_wins()) do
-    if vim.api.nvim_win_get_config(win).relative == "win" then
-      vim.api.nvim_win_close(win, false)
-    end
-  end
-end
+local toggle_zen = require("modules").toggle_zen
+local escape = require("modules").escape
 
---  ┌                                                                              ┐
---  │ These define common comment styles like this                                 │
---  └                                                                              ┘
-km.set({ "n", "v" }, "<leader>x1", ":CBlbox12<cr>", { desc = "Comment - single side" })
-km.set({ "n", "v" }, "<leader>x2", ":CBlbox18<cr>", { desc = "Comment - both sides" })
-km.set("n", "<leader>x3", "CBline3<cr>", { desc = "Centered Line" })
-km.set("n", "<leader>x4", "CBline5<cr>", { desc = "Centered Line Weighted" })
-
-km.set("n", "<Leader>u", ":Lazy update<CR>", { desc = "Lazy Update (Sync)" })
-
-km.set("n", "<Leader>n", "<cmd>enew<CR>", { desc = "New File" })
-
-km.set("n", "<Leader>a", "ggVG<c-$>", { desc = "Select All" })
 
 -- Make visual yanks place the cursor back where started
 km.set("v", "y", "ygv<Esc>", { desc = "Yank and reposition cursor" })
 
-km.set("n", "<Delete>", "<cmd>:w<CR>", { desc = "Save file" })
 
 km.set("n", "<leader>xu", ":UndotreeToggle<cr>", { desc = "Undo Tree" })
 -- More molecular undo of text
@@ -36,20 +16,13 @@ km.set("i", "?", "?<c-g>u")
 km.set("i", ";", ";<c-g>u")
 km.set("i", ":", ":<c-g>u")
 
-km.set({ "n", "i" }, "<F1>", "<Esc>")
-
 --nav buddy
 km.set({ "n" }, "<leader>xb", ":lua require('nvim-navbuddy').open()<cr>", { desc = "Nav Buddy" })
 
-km.set("n", "<esc>", function()
-  close_floating()
-  vim.cmd(":noh")
-end, { silent = true, desc = "Remove Search Highlighting, Dismiss Popups" })
+
 
 km.set("n", "<leader>l", ":LazyGit<cr>", { silent = true, desc = "Lazygit" })
 
--- Easy delete buffer without losing window split
-km.set("n", "<leader>d", ":lua MiniBufremove.delete()<cr>", { silent = true, desc = "Mini Bufremove" })
 
 -- Easy add date/time
 function date()
@@ -60,9 +33,7 @@ function date()
   vim.api.nvim_feedkeys("o", "n", true)
 end
 
-km.set("n", "<Leader>xd", "<cmd>lua date()<cr>", { desc = "Insert Date" })
-
-km.set("n", "<Leader>v", "gea", { desc = "Edit after last word" })
+km.set("n", "<leader>xd", "<сmd>lua date()<cr>", { desc = "Insert Date" })
 
 km.set("n", "j", [[(v:count > 5 ? "m'" . v:count : "") . 'j']], { expr = true, desc = "if j > 5 add to jumplist" })
 
@@ -129,59 +100,43 @@ km.set({ "v", "n" }, "<leader>cn", function()
   vim.lsp.buf.rename()
 end, { noremap = true, silent = true, desc = "Code Rename" })
 
-km.set("n", "<Leader><Down>", "<C-W><C-J>", { silent = true, desc = "Window Down" })
-km.set("n", "<Leader><Up>", "<C-W><C-K>", { silent = true, desc = "Window Up" })
-km.set("n", "<Leader><Right>", "<C-W><C-L>", { silent = true, desc = "Window Right" })
-km.set("n", "<Leader><Left>", "<C-W><C-H>", { silent = true, desc = "Window Left" })
-km.set("n", "<Leader>wr", "<C-W>R", { silent = true, desc = "Window Resize" })
-km.set("n", "<Leader>=", "<C-W>=", { silent = true, desc = "Window Equalise" })
+km.set("n", "<leader><Down>", "<C-W><C-J>", { silent = true, desc = "Window Down" })
+km.set("n", "<leader><Up>", "<C-W><C-K>", { silent = true, desc = "Window Up" })
+km.set("n", "<leader><Right>", "<C-W><C-L>", { silent = true, desc = "Window Right" })
+km.set("n", "<leader><Left>", "<C-W><C-H>", { silent = true, desc = "Window Left" })
+km.set("n", "<leader>wr", "<C-W>R", { silent = true, desc = "Window Resize" })
+km.set("n", "<leader>=", "<C-W>=", { silent = true, desc = "Window Equalise" })
 
 -- Easier window switching with leader + Number
--- Creates mappings like this: km.set("n", "<Leader>2", "2<C-W>w", { desc = "Move to Window 2" })
+-- Creates mappings like this: km.set("n", "<leader>2", "2<C-W>w", { desc = "Move to Window 2" })
 for i = 1, 4 do
-  local lhs = "<Leader>" .. i
+  local lhs = "<leader>" .. i
   local rhs = i .. "<C-W>w"
   km.set("n", lhs, rhs, { desc = "Move to Window " .. i })
 end
 
-km.set({ "n", "v" }, "h", ":Pounce<CR>", { silent = true, desc = "Pounce" })
-km.set("n", "H", ":PounceRepeat<CR>", { silent = true, desc = "Pounce Repeat" })
-
--- thanks to https://www.reddit.com/r/neovim/comments/107g7yf/comment/j3o5a6f/?context=3 we can toggle the line mode changes in our options due to the correct variable being set here
-km.set("n", "<leader>z", function()
-  if vim.g.zen_mode_active then
-    require("zen-mode").toggle()
-    vim.g.zen_mode_active = false
-  else
-    require("zen-mode").toggle()
-    vim.g.zen_mode_active = true
-  end
-end, { desc = "Zen Mode Toggle" })
 
 km.set("i", "<A-BS>", "<C-W>", { desc = "Option+BS deletes whole word" })
 
--- Gitsigns specific for file specific git info/tools
-km.set("n", "<leader>gb", ":Gitsigns toggle_current_line_blame<cr>", { desc = "Git toggle line blame" })
-km.set("n", "<leader>gp", ":Gitsigns preview_hunk<cr>", { desc = "Git preview hunk" })
-km.set("n", "<leader>gr", ":Gitsigns reset_hunk<cr>", { desc = "Get reset hunk" })
 
-km.set("n", "<Leader>xs", ":SearchSession<CR>", { desc = "Search Sessions" })
+
+km.set("n", "<leader>xs", ":SearchSession<cr>", { desc = "Search Sessions" })
 
 km.set(
   "v",
   "<leader>xp",
-  ":'<,'> w !pandoc --no-highlight --wrap=none | pbcopy <CR>",
+  ":'<,'> w !pandoc --no-highlight --wrap=none | pbcopy <cr>",
   { silent = true, desc = "Pandoc Export" }
 )
 
-km.set("n", "<Leader>xn", ":let @+=@%<cr>", { desc = "Copy Buffer name and path" })
+km.set("n", "<leader>xn", ":let @+=@%<cr>", { desc = "Copy Buffer name and path" })
 
-km.set("n", "<Leader>xc", ":g/console.lo/d<cr>", { desc = "Remove console.log" })
+km.set("n", "<leader>xc", ":g/console.lo/d<cr>", { desc = "Remove console.log" })
 
 km.set("v", "<leader>o", "zA", { desc = "Toggle Fold" })
 
-km.set({ "n", "x" }, "[p", '<Cmd>exe "put! " . v:register<CR>', { desc = "Paste Above" })
-km.set({ "n", "x" }, "]p", '<Cmd>exe "put "  . v:register<CR>', { desc = "Paste Below" })
+km.set({ "n", "x" }, "[p", '<сmd>exe "put! " . v:register<cr>', { desc = "Paste Above" })
+km.set({ "n", "x" }, "]p", '<сmd>exe "put "  . v:register<cr>', { desc = "Paste Below" })
 
 -- This allows you to select, and paste over contents, without that pasted over contents going into the register, that means you can paste again without it inserting the thing you pasted over the last time
 km.set("x", "p", function()
@@ -189,31 +144,48 @@ km.set("x", "p", function()
 end, { remap = false, expr = true })
 
 km.set({ "n", "x" }, "<Bslash>", "<C-6>", { desc = "Alternate File" })
-km.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
--- This sets the ability to surround words with brackets and quotes with one key in visual mode
--- local v_chars = { "(", ")", "[", "]", "{", "}", "'", '"' }
--- for _, char in pairs(v_chars) do
---   vim.keymap.set("v", char, "<Plug>(nvim-surround-visual)" .. char)
--- end
---
--- Set file EOL
-km.set({ "n" }, "<Leader>xl", ":set ff=dos<CR>", { desc = "EOL = CRLF" })
-km.set({ "n" }, "<Leader>xf", ":set ff=unix<CR>", { desc = "EOL = LF" })
 
--- Quick new split above/below
-km.set({ "n" }, "<Leader>ws", "<CMD>new<CR>", { desc = "New split below" })
-km.set({ "n" }, "<Leader>wv", "<CMD>vnew<CR>", { desc = "New split right" })
 
--- Word Count
-km.set({ "n" }, "<Leader>xw", function()
-  return require("notify")(wordCount.getWords(), "info", {
-    icon = "󰆙 ",
-    title = "Word Count",
-    timeout = 1000,
-    render = "wrapped-compact",
-    top_down = true,
-    opts = {
-      max_width = 10,
-    },
-  })
-end, { desc = "Word Count" })
+-- готово
+
+-- общее
+km.set({ "n" }, "<leader>ws", "<сmd>new<cr>", { desc = "Создать окно снизу" })
+km.set({ "n" }, "<leader>wv", "<сmd>vnew<cr>", { desc = "Создать окно" })
+km.set({ "n" }, "<leader>n", "<сmd>enew<cr>", { desc = "Новый файл" })
+km.set({ "n" }, "<delete>", "<сmd>:w<cr>", { desc = "Сохранить файл" }) -- сохранение через Fn
+km.set({ "n" }, "<leader>a", "ggVG<c-$>", { desc = "Выбрать все" })
+km.set({ "n" }, "x", '"_x', { desc = "Удалить символ" })
+
+-- полезное
+km.set({ "n" }, "<leader>z", toggle_zen, { desc = "Zen Mode переключатель" })
+km.set({ "n" }, "<esc>", escape, { silent = true, desc = "Удалить подсветку поиска, закрыть окна" })
+
+-- Вертикальный скролл и в центр
+km.set({ "n" }, "<c-d>", "<c-d>zz", { desc = 'Вертикальный скролл и в центр' })
+km.set({ "n" }, "<c-u>", "<c-u>zz", { desc = 'Вертикальный скролл и в центр' })
+
+-- Найти и в центр
+km.set({ "n" }, "n", "nzzzv", { desc = "Найти и в центр" })
+km.set({ "n" }, "n", "Nzzzv", { desc = "Найти и в центр" })
+
+-- Перемещение курсора в INSERT режиме
+km.set({ "i" }, "<c-b>", "<esc>^i", { desc = "в начало строки" })
+km.set({ "i" }, "<c-e>", "<end>", { desc = "в конец строки" })
+km.set({ "i" }, "<c-h>", "<left>", { desc = "влево" })
+km.set({ "i" }, "<c-l>", "<right>", { desc = "вправо" })
+km.set({ "i" }, "<c-j>", "<down>", { desc = "вниз" })
+km.set({ "i" }, "<c-k>", "<up>", { desc = "вверх" })
+
+-- Pounce
+km.set({ "n", "v" }, "<leader>h", ":Pounce<cr>", { silent = true, desc = "Pounce" })
+km.set({ "n" }, "<leader>H", ":PounceRepeat<cr>", { silent = true, desc = "Pounce повторить" })
+
+-- Mini
+-- Простое удаление буфера без потери разделения окна
+km.set({ "n" }, "<leader>d", ":lua MiniBufremove.delete()<cr>", { silent = true, desc = "Mini удалить буфер" })
+
+-- Gitsigns
+-- специфичная для конкретного файла информация/инструменты git
+km.set("n", "<leader>gb", ":Gitsigns toggle_current_line_blame<cr>", { desc = "Git toggle line blame" })
+km.set("n", "<leader>gp", ":Gitsigns preview_hunk<cr>", { desc = "Git preview hunk" })
+km.set("n", "<leader>gr", ":Gitsigns reset_hunk<cr>", { desc = "Get reset hunk" })
