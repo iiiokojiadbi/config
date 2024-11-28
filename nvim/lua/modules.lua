@@ -23,15 +23,17 @@ end
 
 local M = {}
 
+M.dump = dump
 
+function M.toggle_files()
+    local _ = require("mini.files").close() or require("mini.files").open()
+end
 
 function M.get_config(name)
     return function()
         require("configs." .. name)
     end
 end
-
-M.dump = dump
 
 function M.toggle_zen()
     if vim.g.zen_mode_active then

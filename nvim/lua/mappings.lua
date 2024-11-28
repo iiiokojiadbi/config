@@ -2,13 +2,13 @@ local km = vim.keymap
 
 local toggle_zen = require("modules").toggle_zen
 local escape = require("modules").escape
+local toggle_files = require("modules").toggle_files
 
 
 -- Make visual yanks place the cursor back where started
 km.set("v", "y", "ygv<Esc>", { desc = "Yank and reposition cursor" })
 
 
-km.set("n", "<leader>xu", ":UndotreeToggle<cr>", { desc = "Undo Tree" })
 -- More molecular undo of text
 km.set("i", ".", ".<c-g>u")
 km.set("i", "!", "!<c-g>u")
@@ -152,7 +152,8 @@ km.set({ "n", "x" }, "<Bslash>", "<C-6>", { desc = "Alternate File" })
 km.set({ "n" }, "<leader>ws", "<сmd>new<cr>", { desc = "Создать окно снизу" })
 km.set({ "n" }, "<leader>wv", "<сmd>vnew<cr>", { desc = "Создать окно" })
 km.set({ "n" }, "<leader>n", "<сmd>enew<cr>", { desc = "Новый файл" })
-km.set({ "n" }, "<delete>", "<сmd>:w<cr>", { desc = "Сохранить файл" }) -- сохранение через Fn
+-- сохранение через Fn
+km.set({ "n" }, "<delete>", "<сmd>:w<cr>", { desc = "Сохранить файл" })
 km.set({ "n" }, "<leader>a", "ggVG<c-$>", { desc = "Выбрать все" })
 km.set({ "n" }, "x", '"_x', { desc = "Удалить символ" })
 
@@ -183,6 +184,7 @@ km.set({ "n" }, "<leader>H", ":PounceRepeat<cr>", { silent = true, desc = "Pounc
 -- Mini
 -- Простое удаление буфера без потери разделения окна
 km.set({ "n" }, "<leader>d", ":lua MiniBufremove.delete()<cr>", { silent = true, desc = "Mini удалить буфер" })
+km.set({ "n" }, "<leader>e", toggle_files, { desc = "Mini открыть проводник" })
 
 -- Gitsigns
 -- специфичная для конкретного файла информация/инструменты git

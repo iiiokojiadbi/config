@@ -2,29 +2,42 @@ local get_config = require("modules").get_config
 
 return {
     {
-        "echasnovski/mini.ai",
-        config = get_config("mini-ai"),
-        version = false
-    },
-    {
-        "echasnovski/mini.bracketed",
-        config = get_config("mini-bracketed"),
-        version = false
-    },
-    {
-        "echasnovski/mini.bufremove",
-        config = get_config("mini-bufremove"),
-        version = false
-    },
-    {
-        "echasnovski/mini.indentscope",
-        config = get_config("mini-indentscope"),
+        "echasnovski/mini.nvim",
+        name = "mini",
         version = false,
-        event = "VeryLazy"
-    },
-    {
-        "echasnovski/mini.move",
-        config = get_config("mini-move"),
-        version = false
+        init = function()
+            package.preload["nvim-web-devicons"] = function()
+                package.loaded["nvim-web-devicons"] = {}
+                require("mini.icons").mock_nvim_web_devicons()
+                return package.loaded["nvim-web-devicons"]
+            end
+        end,
+
+        event = function()
+            if vim.fn.argc() == 0 then
+                return "VimEnter"
+            else
+                return { "InsertEnter", "LspAttach" }
+            end
+        end,
+
+        config = function()
+            local configs = require('configs.mini')
+            local mini_modules = {
+                "ai",
+                "icons",
+                "bufremove",
+                "indentscope",
+                "bracketed",
+                "move",
+                "files",
+                "surround",
+                "pairs"
+            }
+
+            for _, module in ipairs(mini_modules) do
+                require("mini." .. module).setup(configs[module])
+            end
+        end,
     },
 }

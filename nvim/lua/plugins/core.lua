@@ -16,17 +16,13 @@ return {
         opts = get_config("blink")
     },
     {
-        "rmagatti/auto-session",
-        config = get_config("auto-session")
+        "stevearc/conform.nvim",
+        event = { "BufWritePre" },
+        cmd = { "ConformInfo" },
+        config = get_config("conform"),
     },
     {
         "neovim/nvim-lspconfig",
         config = get_config("lsp"),
     },
-    {
-        "stevearc/conform.nvim",
-        event = { "BufWritePre" },
-        cmd = { "ConformInfo" },
-        config = get_config("conform"),
-    }
 }
