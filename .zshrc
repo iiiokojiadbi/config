@@ -1,15 +1,9 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-export FZF_ALT_C_OPTS="
-  --walker-skip .git,node_modules,target,Library,Applications,Music
-  --preview 'tree -C {}'"
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-# fi
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
@@ -20,7 +14,6 @@ plugins=(
 	git
 	z
 	docker
-    fzf-tab
 	npm
 	node
 	zsh-autosuggestions
@@ -32,7 +25,6 @@ source <(fzf --zsh)
 
 alias ls="eza --tree --level=1 --icons=always --no-time --no-user --no-permissions"
 alias nv="NVIM_APPNAME=nv nvim"
-alias nd="NVIM_APPNAME=nd nvim"
 
 function yy() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
@@ -42,3 +34,5 @@ function yy() {
 	fi
 	rm -f -- "$tmp"
 }
+
+
