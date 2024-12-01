@@ -35,5 +35,3 @@ function yy() {
 	rm -f -- "$tmp"
 }
 
-
-
