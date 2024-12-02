@@ -17,27 +17,20 @@ return {
             if vim.fn.argc() == 0 then
                 return "VimEnter"
             else
-                return { "InsertEnter", "LspAttach" }
+                return {"InsertEnter", "LspAttach"}
             end
         end,
 
         config = function()
             local configs = require('configs.mini')
             local mini_modules = {
-                "ai",
-                "icons",
-                "bufremove",
-                "indentscope",
-                "bracketed",
-                "move",
-                "files",
-                "surround",
-                "pairs"
+                "ai", "icons", "bufremove", "indentscope", "bracketed", "move",
+                "files", "surround", "pairs"
             }
 
             for _, module in ipairs(mini_modules) do
                 require("mini." .. module).setup(configs[module])
             end
-        end,
-    },
+        end
+    }
 }
