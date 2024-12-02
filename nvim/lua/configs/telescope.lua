@@ -64,15 +64,14 @@ require("telescope").setup({
       ignore_current_buffer = true,
       mappings = {
         i = {
-          ["<C-w>"] = "delete_buffer",
+          ["<C-d>"] = "delete_buffer",
         },
         n = {
-          ["<C-w>"] = "delete_buffer",
+          ["<C-d>"] = "delete_buffer",
         },
       },
     },
   },
 })
 
-require("telescope").load_extension("fzf")
 require("telescope").load_extension("file_browser")

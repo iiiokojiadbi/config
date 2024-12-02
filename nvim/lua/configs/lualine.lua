@@ -206,7 +206,6 @@ require("lualine").setup({
   tabline = {},
   extensions = {
     "quickfix",
-    "fzf",
   },
 })
 

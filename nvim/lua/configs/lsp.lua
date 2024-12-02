@@ -16,18 +16,24 @@ end
 -- Enable (broadcasting) snippet capability for completion
 -- local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
--- LSP Server config
+local on_attach = function(client)
+    client.server_capabilities.document_formatting = false
+end
 
+-- LSP Server config
 local servers = {
     html = {},
-    ts_ls = {},
-    stylelint_lsp = {
-        filetypes = {"css", "scss"},
-        root_dir = require("lspconfig").util.root_pattern("package.json", ".git"),
+    ts_ls = {
+        cmd = { "typescript-language-server", "--stdio" },
+        filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
+        init_options = {
+          hostInfo = "neovim",
+        },
+        single_file_support = true,
         settings = {
-            stylelintplus = {
-                -- see available options in stylelint-lsp documentation
-            }
+          completions = {
+            completeFunctionCalls = true,
+          },
         },
     },
     cssls = {
@@ -53,57 +59,26 @@ local servers = {
     }
 }
 
-require("lspconfig").cssls.setup({
-    capabilities = capabilities,
-    settings = {
-        css = {
-            lint = {
-                emptyRules = "ignore"
-            }
-        },
-        scss = {
-            lint = {
-                idSelector = "warning",
-                zeroUnits = "warning",
-                duplicateProperties = "warning",
-                emptyRules = nil
-            },
-            completion = {
-                completePropertyWithSemicolon = true,
-                triggerPropertyValueCompletion = true
-            }
-        }
-    },
-    on_attach = function(client)
-        client.server_capabilities.document_formatting = false
-    end
-})
-require("lspconfig").ts_ls.setup({
-    capabilities = capabilities,
-    on_attach = function(client)
-        client.server_capabilities.document_formatting = false
-    end
-})
+local lspconfig = require("lspconfig")
 
-require("lspconfig").html.setup({
-    capabilities = capabilities,
-    on_attach = function(client)
-        client.server_capabilities.document_formatting = false
-    end
-})
+for name, opts in ipairs(servers) do
+    opts.on_attach = on_attach
+    opts.capabilities = capabilities
+  
+    lspconfig[name].setup(opts)
+  end
 
-require("lspconfig").stylelint_lsp.setup({
-    filetypes = {"css", "scss"},
-    root_dir = require("lspconfig").util.root_pattern("package.json", ".git"),
-    settings = {
-        stylelintplus = {
-            -- see available options in stylelint-lsp documentation
-        }
-    },
-    on_attach = function(client)
-        client.server_capabilities.document_formatting = false
-    end
-})
+-- require("lspconfig").stylelint_lsp.setup({
+--     capabilities = capabilities, ! removed?
+--     on_attach = on_attach, 
+--     filetypes = {"css", "scss"},
+--     root_dir = require("lspconfig").util.root_pattern("package.json", ".git"),
+--     settings = {
+--         stylelintplus = {
+--             -- see available options in stylelint-lsp documentation
+--         }
+--     },
+-- })
 
 -- LSP Prevents inline buffer annotations
 vim.diagnostic.open_float()
