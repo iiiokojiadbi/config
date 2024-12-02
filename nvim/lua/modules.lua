@@ -2,7 +2,9 @@ local function dump(o)
     if type(o) == 'table' then
         local s = '{ '
         for k, v in pairs(o) do
-            if type(k) ~= 'number' then k = '"' .. k .. '"' end
+            if type(k) ~= 'number' then
+                k = '"' .. k .. '"'
+            end
             s = s .. '[' .. k .. '] = ' .. dump(v) .. ','
         end
         return s .. '} '
@@ -20,7 +22,6 @@ local function close_floating()
     end
 end
 
-
 local M = {}
 
 M.dump = dump
@@ -29,9 +30,14 @@ function M.toggle_files()
     local _ = require("mini.files").close() or require("mini.files").open()
 end
 
-function M.get_config(name)
+function M.get_config(name, sub)
     return function()
-        require("configs." .. name)
+        if sub then
+            require("configs." .. name)[sub]()
+        else
+            require("configs." .. name)
+
+        end
     end
 end
 
