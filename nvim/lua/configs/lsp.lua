@@ -21,52 +21,50 @@ local on_attach = function(client)
 end
 
 -- LSP Server config
-local servers = {
-    html = {},
-    ts_ls = {
-        cmd = { "typescript-language-server", "--stdio" },
-        filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
-        init_options = {
-          hostInfo = "neovim",
+local lspconfig = require("lspconfig")
+
+lspconfig.html.setup({
+    capabilities = capabilities,
+    on_attach = on_attach
+})
+
+lspconfig.cssls.setup({
+    settings = {
+        css = {
+            lint = {
+                emptyRules = "ignore"
+            }
         },
-        single_file_support = true,
-        settings = {
-          completions = {
-            completeFunctionCalls = true,
-          },
-        },
-    },
-    cssls = {
-        settings = {
-            css = {
-                lint = {
-                    emptyRules = "ignore"
-                }
+        scss = {
+            lint = {
+                idSelector = "warning",
+                zeroUnits = "warning",
+                duplicateProperties = "warning",
+                emptyRules = nil
             },
-            scss = {
-                lint = {
-                    idSelector = "warning",
-                    zeroUnits = "warning",
-                    duplicateProperties = "warning",
-                    emptyRules = nil
-                },
-                completion = {
-                    completePropertyWithSemicolon = true,
-                    triggerPropertyValueCompletion = true
-                }
+            completion = {
+                completePropertyWithSemicolon = true,
+                triggerPropertyValueCompletion = true
             }
         }
     }
-}
+})
 
-local lspconfig = require("lspconfig")
-
-for name, opts in ipairs(servers) do
-    opts.on_attach = on_attach
-    opts.capabilities = capabilities
-  
-    lspconfig[name].setup(opts)
-  end
+lspconfig.ts_ls.setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+    cmd = { "typescript-language-server", "--stdio" },
+    filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
+    init_options = {
+      hostInfo = "neovim",
+    },
+    single_file_support = true,
+    settings = {
+      completions = {
+        completeFunctionCalls = true,
+      },
+    }
+})
 
 -- require("lspconfig").stylelint_lsp.setup({
 --     capabilities = capabilities, ! removed?
