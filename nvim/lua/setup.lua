@@ -7,6 +7,8 @@ require 'plugins.conform', -- Autoformat
 require 'plugins.gitsigns', -- Adds git related signs to the gutter, as well as utilities for managing changes
 require 'plugins.nvim-treesitter', -- Highlight, edit, and navigate code
 -- UI
+require 'plugins.lualine', -- 
+require 'plugins.nvim-colorizer', -- 
 require 'plugins.catppuccin', -- Theme catppuccin
 require 'plugins.btw', -- Dashboard
 require 'plugins.vim-sleuth', -- Detect tabstop and shiftwidth automatically
