@@ -1,19 +1,18 @@
 require('lazy').setup({ -- plugins
 -- LSP AND CORE
-require("plugins.nvim-lspconfig"), -- Main LSP Configuration
-require("plugins.nvim-lint"), -- Linting
-require("plugins.autopairs"), -- Autopairs
-require("plugins.nvim-cmp"), -- ! -- Autocompletion
-require("plugins.conform"), -- Autoformat
-require("plugins.telescope"), -- Fuzzy Finder (files, lsp, etc)
-require("plugins.gitsigns"), -- Adds git related signs to the gutter, as well as utilities for managing changes
-require("plugins.nvim-treesitter"), -- Highlight, edit, and navigate code
-require("plugins.lazydev"), -- ? `lazydev` configures Lua LSP for your Neovim config, runtime and plugins used for completion, annotations and signatures of Neovim apis
+require 'plugins.nvim-lspconfig', -- Main LSP Configuration
+require 'plugins.nvim-lint', -- Linting
+require 'plugins.blink', -- Autocompletion
+require 'plugins.conform', -- Autoformat
+require 'plugins.gitsigns', -- Adds git related signs to the gutter, as well as utilities for managing changes
+require 'plugins.nvim-treesitter', -- Highlight, edit, and navigate code
 -- UI
-require("plugins.vim-sleuth"), -- Detect tabstop and shiftwidth automatically
-require("plugins.indent-blankline"), -- Add indentation guides even on blank lines
-require("plugins.todo-comments"), -- Highlight todo, notes, etc in comments
-require("plugins.mini") -- Collection of various small independent plugins/modules
+require 'plugins.catppuccin', -- Theme catppuccin
+require 'plugins.btw', -- Dashboard
+require 'plugins.vim-sleuth', -- Detect tabstop and shiftwidth automatically
+require 'plugins.todo-comments', -- Highlight todo, notes, etc in comments
+-- PACKS
+require 'plugins.snacks' -- A collection of small QoL plugins for Neovim
 }, {
     ui = {
         -- If you are using a Nerd Font: set icons to an empty table which will use the
@@ -35,3 +34,5 @@ require("plugins.mini") -- Collection of various small independent plugins/modul
         }
     }
 })
+
+vim.cmd.colorscheme 'catppuccin'
