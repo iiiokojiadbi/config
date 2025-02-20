@@ -2,19 +2,19 @@ local border = 'single'
 
 return {
     'saghen/blink.cmp',
-    event = {"LspAttach"},
+    event = { "LspAttach" },
     dependencies = 'rafamadriz/friendly-snippets',
     version = '*',
     opts = {
         keymap = {
             preset = 'enter',
             -- ['<C-space>'] = {'show', 'show_documentation', 'hide_documentation'},
-            ['<C-e>'] = {'hide'},
+            ['<C-e>'] = { 'hide' },
             -- ['<CR>'] = {'accept'},
-            ['<S-Tab>'] = {'select_prev', 'fallback'},
-            ['<Tab>'] = {'select_next', 'fallback'},
-            ['<C-u>'] = {'scroll_documentation_up', 'fallback'},
-            ['<C-d>'] = {'scroll_documentation_down', 'fallback'}
+            ['<S-Tab>'] = { 'select_prev', 'fallback' },
+            ['<Tab>'] = { 'select_next', 'fallback' },
+            ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
+            ['<C-d>'] = { 'scroll_documentation_down', 'fallback' }
         },
         appearance = {
             use_nvim_cmp_as_default = true,
