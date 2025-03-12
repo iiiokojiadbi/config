@@ -6,6 +6,9 @@ require('lazy').setup { -- plugins
   require 'plugins.core.conform', -- Autoformat
   require 'plugins.core.nvim-treesitter', -- Highlight, edit, and navigate code
   require 'plugins.core.nvim-ts-autotag',
+  require 'plugins.core.neo-tree',
+  require 'plugins.core.telescope',
+  require 'plugins.core.toggleterm',
   -- UI
   require 'plugins.ui.nvim-colorizer', -- color highlighter
   require 'plugins.ui.btw', -- Dashboard
@@ -14,7 +17,7 @@ require('lazy').setup { -- plugins
   require 'plugins.themes.kanagawa',
   -- require 'plugins.lualine',
   -- PACKS
-  require 'plugins.snacks',
+  -- require 'plugins.snacks',
 }
 
 -- vim.cmd.colorscheme 'catppuccin'

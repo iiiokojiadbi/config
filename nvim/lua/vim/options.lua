@@ -10,7 +10,8 @@ function M.setup()
   vim.opt.termguicolors = true
   vim.opt.number = true
   -- vim.opt.relativenumber = true
-  vim.opt.mouse = 'a'
+  -- vim.opt.mouse = 'a'
+  vim.opt.mouse = ''
   vim.opt.showmode = false
   vim.opt.breakindent = true
   vim.opt.undofile = true
@@ -29,6 +30,11 @@ function M.setup()
   vim.opt.cursorline = true
   vim.opt.cursorcolumn = true
   vim.opt.scrolloff = 10
+
+  vim.opt.expandtab = true
+  vim.opt.smartindent = true
+  vim.opt.tabstop = 2
+  vim.opt.shiftwidth = 2
 
   -- Decrease update time
   vim.opt.updatetime = 250

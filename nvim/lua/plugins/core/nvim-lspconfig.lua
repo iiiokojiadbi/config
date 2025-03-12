@@ -27,7 +27,14 @@ return {
           })
         end
 
-        map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
+        map('<leader>ca', vim.lsp.buf.code_action, 'code action', { 'n', 'x' })
+        map('gd', vim.lsp.buf.definition, 'goto definition | перейти к определению', { 'n' })
+        map('gD', vim.lsp.buf.declaration, 'goto declaration | перейти к объявлению', { 'n' })
+        map('gi', vim.lsp.buf.implementation, 'goto implementation | перейти к реализации', { 'n' })
+        map('gr', vim.lsp.buf.references, 'goto references | показать все ссылки и упоминания', { 'n' })
+        map('<c-k>', vim.lsp.buf.signature_help, 'display signature information | показать информацию о сигнатуре', { 'n' })
+        map('gR', vim.lsp.buf.rename, 'rename all references | переименовать все ссылки', { 'n' })
+        map('go', vim.lsp.buf.type_definition, 'goto type definition | перейти к определению символа типа', { 'n' })
 
         -- The following two autocommands are used to highlight references of the
         -- word under your cursor when your cursor rests there for a little while.
