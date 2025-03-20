@@ -18,99 +18,86 @@ return {
     words = { enabled = true },
     rename = { enabled = true },
     picker = { enabled = true },
+    explorer = { enabled = true },
   },
   keys = {
+    {
+      "<leader>e",
+      function()
+        Snacks.explorer()
+      end,
+      desc = "Дерево файлов | other",
+    },
     -- Поиск
     {
       "<leader>ff",
       function()
         Snacks.picker.files()
       end,
-      desc = "Поиск файлов",
+      desc = "Поиск файлов | picker",
     },
     {
       "<leader>fa",
       function()
         Snacks.picker.smart()
       end,
-      desc = "Поиск файлов",
+      desc = "Smart поиск файлов | picker",
     },
     {
-      "<leader>fb",
+      "<leader>f,",
       function()
         Snacks.picker.buffers()
       end,
-      desc = "Поиск открытых файлов",
+      desc = "Показать буферы | picker",
     },
     {
       "<leader>fw",
       function()
         Snacks.picker.grep()
       end,
-      desc = "Поиск grep",
+      desc = "Grep | picker",
     },
     {
       "<leader>sb",
       function()
         Snacks.picker.lines()
       end,
-      desc = "Поиск по буферу",
+      desc = "Поиск по буферу | picker",
     },
     {
       "<leader>sB",
       function()
         Snacks.picker.grep_buffers()
       end,
-      desc = "Поиск в открытых буферах",
+      desc = "Поиск в открытых буферах | picker",
     },
     {
       "<leader>n",
       function()
         Snacks.notifier.show_history()
       end,
-      desc = "История уведомлений",
+      desc = "История уведомлений | notification",
     },
     {
       "<leader>fp",
       function()
         Snacks.picker.projects()
       end,
-      desc = "Показать проекты",
+      desc = "Показать проекты | picker",
     },
     {
       "<leader>fr",
       function()
         Snacks.picker.recent()
       end,
-      desc = "Показать недавние",
-    },
-    {
-      "<leader>sd",
-      function()
-        Snacks.picker.diagnostics()
-      end,
-      desc = "Диагностика",
-    },
-    {
-      "<leader>sD",
-      function()
-        Snacks.picker.diagnostics_buffer()
-      end,
-      desc = "Диагностика по буферу",
-    },
-    {
-      "<leader>qq",
-      function()
-        Snacks.picker.qflist()
-      end,
-      desc = "Показать список исправлений",
+      desc = "Показать недавние | picker",
     },
     {
       "<leader>sk",
       function()
         Snacks.picker.keymaps()
       end,
-      desc = "Показать все привязки",
+      desc = "Показать все привязки | picker",
     },
     -- LSP
     {
@@ -118,14 +105,14 @@ return {
       function()
         Snacks.picker.lsp_definitions()
       end,
-      desc = "LSP: перейти к определению",
+      desc = "Перейти к определению | goto definition | lsp",
     },
     {
       "gD",
       function()
         Snacks.picker.lsp_declarations()
       end,
-      desc = "LSP: перейти к объявлению",
+      desc = "Перейти к объявлению | goto declaration | lsp",
     },
     {
       "gr",
@@ -133,35 +120,35 @@ return {
         Snacks.picker.lsp_references()
       end,
       nowait = true,
-      desc = "LSP: показать ссылки и упоминания",
+      desc = "Показать ссылки и упоминания | goto reference | lsp",
     },
     {
-      "gi",
+      "gI",
       function()
         Snacks.picker.lsp_implementations()
       end,
-      desc = "LSP: перейти к реализации",
+      desc = "Перейти к реализации | goto implementation | lsp",
     },
     {
       "gy",
       function()
         Snacks.picker.lsp_type_definitions()
       end,
-      desc = "LSP: перейти к определению типа",
+      desc = "Перейти к определению типа | goto type definition | lsp",
     },
     {
       "<leader>ss",
       function()
         Snacks.picker.lsp_symbols()
       end,
-      desc = "LSP: Symbols",
+      desc = "LSP Symbols | lsp",
     },
     {
       "<leader>sS",
       function()
         Snacks.picker.lsp_workspace_symbols()
       end,
-      desc = "LSP: Workspace Symbols",
+      desc = "LSP Workspace Symbols | lsp",
     },
     -- git
     {
@@ -219,35 +206,35 @@ return {
       function()
         Snacks.picker.registers()
       end,
-      desc = "Показать регистры",
+      desc = "Показать регистры | picker",
     },
     {
       "<leader>bd",
       function()
         Snacks.bufdelete()
       end,
-      desc = "Удалить буфер",
+      desc = "Удалить буфер | other",
     },
     {
       "<leader>rf",
       function()
         Snacks.rename.rename_file()
       end,
-      desc = "Переименовать файл",
+      desc = "Переименовать файл | other",
     },
     {
       "<leader>un",
       function()
         Snacks.notifier.hide()
       end,
-      desc = "Уведомления закрыть",
+      desc = "Закрыть все уведомления | notification",
     },
     {
       "]]",
       function()
         Snacks.words.jump(vim.v.count1)
       end,
-      desc = "Следующая ссылка",
+      desc = "Следующая ссылка | reference",
       mode = { "n", "t" },
     },
     {
@@ -255,7 +242,7 @@ return {
       function()
         Snacks.words.jump(-vim.v.count1)
       end,
-      desc = "Предыдущая ссылка",
+      desc = "Предыдущая ссылка | reference",
       mode = { "n", "t" },
     },
     init = function()
