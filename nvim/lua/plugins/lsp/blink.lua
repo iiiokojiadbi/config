@@ -1,24 +1,25 @@
-local border = 'single'
+local border = "single"
 
 return {
-  'saghen/blink.cmp',
-  event = { 'LspAttach' },
-  dependencies = 'rafamadriz/friendly-snippets',
-  version = '*',
+  "saghen/blink.cmp",
+  event = { "LspAttach" },
+  dependencies = "rafamadriz/friendly-snippets",
+  version = "*",
   opts = {
-    keymap = {
-      preset = 'enter',
-      -- ['<C-space>'] = {'show', 'show_documentation', 'hide_documentation'},
-      ['<C-e>'] = { 'hide' },
-      -- ['<CR>'] = {'accept'},
-      ['<S-Tab>'] = { 'select_prev', 'fallback' },
-      ['<Tab>'] = { 'select_next', 'fallback' },
-      ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
-      ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
+    keymap = { preset = "enter" },
+    sources = {
+      default = { "lazydev", "lsp", "path", "snippets", "buffer" },
+      providers = {
+        lazydev = {
+          name = "LazyDev",
+          module = "lazydev.integrations.blink",
+          score_offset = 100,
+        },
+      },
     },
     appearance = {
       use_nvim_cmp_as_default = true,
-      nerd_font_variant = 'mono',
+      nerd_font_variant = "mono",
     },
     signature = {
       window = {
@@ -49,7 +50,7 @@ return {
           -- preselect = true,
           auto_insert = true,
           preselect = function(ctx)
-            return ctx.mode ~= 'cmdline' and not require('blink.cmp').snippet_active {
+            return ctx.mode ~= "cmdline" and not require("blink.cmp").snippet_active {
               direction = 1,
             }
           end,

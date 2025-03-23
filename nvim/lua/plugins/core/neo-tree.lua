@@ -7,7 +7,21 @@ return {
     "MunifTanjim/nui.nvim",
   },
   lazy = false, -- neo-tree will lazily load itself
-  config = function()
+  opts = function(_, opts)
+    local function on_move(data)
+      Snacks.rename.on_rename_file(data.source, data.destination)
+    end
+
+    local events = require "neo-tree.events"
+    opts.event_handlers = opts.event_handlers or {}
+    opts.close_if_last_window = false
+
+    vim.list_extend(opts.event_handlers, {
+      { event = events.FILE_MOVED, handler = on_move },
+      { event = events.FILE_RENAMED, handler = on_move },
+    })
+  end,
+  config = function(_, opts)
     vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none", fg = "none" })
     vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none", fg = "none" })
     vim.diagnostic.config {
@@ -20,9 +34,7 @@ return {
         },
       },
     }
-    require("neo-tree").setup {
-      close_if_last_window = false,
-    }
+    require("neo-tree").setup(opts)
   end,
   keys = {
     {
